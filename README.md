@@ -1,4 +1,14 @@
-# ConversorDeMoedas
+# Conversor de Moedas - Angular
+
+### Objetivos:
+- Criar filtros (pipes);
+- Utilizar o Event Emitter;
+- Criar modais com Bootstrap;
+- Utilizar requisição HTTP;
+- Criar um diretiva de validação;
+- Entender o que são Observers;
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 
