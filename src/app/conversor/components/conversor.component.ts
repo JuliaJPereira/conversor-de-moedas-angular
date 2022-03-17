@@ -7,20 +7,20 @@ import { MoedaService, ConversorService } from '../services';
 @Component({
   selector: 'app-conversor',
   templateUrl: './conversor.component.html',
-  styleUrls: ['./conversor.component.css']
+  styleUrls: ['./conversor.component.css'],
 })
 export class ConversorComponent implements OnInit {
-  
   moedas: Moeda[];
   conversao: Conversao;
   possuiErro: boolean;
   conversaoResponse: ConversaoResponse;
 
-  @ViewChild("conversaoForm", {static: true}) conversaoForm: NgForm;
+  @ViewChild('conversaoForm', { static: true }) conversaoForm: NgForm;
 
   constructor(
     private moedaService: MoedaService,
-    private conversorService: ConversorService) { }
+    private conversorService: ConversorService
+  ) {}
 
   ngOnInit(): void {
     this.moedas = this.moedaService.listarTodas();
@@ -32,7 +32,7 @@ export class ConversorComponent implements OnInit {
    * @return void
    */
 
-  init(): void{
+  init(): void {
     this.conversao = new Conversao('USD', 'BRL', null);
     this.possuiErro = false;
   }
@@ -42,10 +42,12 @@ export class ConversorComponent implements OnInit {
    * @return void
    */
 
-  converter(): void{
-    if(this.conversaoForm.form.valid){
-      alert('Convertendo: ' + JSON.stringify(this.conversao));
+  converter(): void {
+    if (this.conversaoForm.form.valid) {
+      this.conversorService.converter(this.conversao).subscribe({
+        next: (response) => (this.conversaoResponse = response),
+        error: () => (this.possuiErro = true),
+      });
     }
   }
-
 }
