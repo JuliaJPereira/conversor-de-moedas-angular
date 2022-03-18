@@ -7,7 +7,7 @@ import { Conversao, ConversaoResponse } from '../models';
   providedIn: 'root',
 })
 export class ConversorService {
-  private readonly BASE_URL = 'http://api.fixer.io/latest';
+  private readonly BASE_URL = ' http://data.fixer.io/api/latest';
 
   constructor(private http: HttpClient) {}
 
@@ -19,8 +19,6 @@ export class ConversorService {
   converter(conversao: Conversao): Observable<ConversaoResponse> {
     return this.http.get<ConversaoResponse>(this.BASE_URL, {
       params: {
-        base: conversao.moedaDe,
-        symbols: conversao.moedaPara,
         access_key: '66ea68d4d4855189ce9aaa4bb5a92c6a'
       },
     });
